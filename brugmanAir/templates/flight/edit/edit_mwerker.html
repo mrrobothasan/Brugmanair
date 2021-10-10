@@ -1,0 +1,49 @@
+{% extends "layout/layout.html" %} {% block content %}
+
+<main class="main-con flex">
+  {% include "includes/_overview.html" %}
+
+  <section class="sec-2">
+    <form class="add-form" action="" method="POST">
+      {{ form.hidden_tag() }} {% from "includes/_formhelpers.html" import
+      render_field %}
+      <div class="input-con">
+        {{render_field(form.fname)}}
+        <label for="first-name" class="label-con">
+          <p class="input-text">Voornaam</p>
+        </label>
+      </div>
+
+      <div class="input-con">
+        {{render_field(form.lname)}}
+        <label for="last-name" class="label-con">
+          <p class="input-text">Achternaam</p>
+        </label>
+      </div>
+
+      <!-- ? postcode -->
+      <div class="input-con">
+        {{render_field(form.postcode)}}
+        <label for="postcode" class="label-con">
+          <p class="input-text">Postcode</p>
+        </label>
+      </div>
+
+      <!-- ? email -->
+      <div class="input-con">
+        {{render_field(form.email)}}
+        <label for="email" class="label-con">
+          <p class="input-text">E-mailadres</p>
+        </label>
+      </div>
+
+      <div class="btns-con add-btn">
+        <button class="btn" type="submit">
+          <span class="btn-text">Wijzigen</span>
+          <span class="btn-after"></span>
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
+{% endblock %}

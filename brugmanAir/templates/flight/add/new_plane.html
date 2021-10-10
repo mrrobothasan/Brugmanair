@@ -1,0 +1,82 @@
+{% extends "layout/layout.html" %} {% block content %}
+
+<main class="main-con flex">
+  {% include "includes/_overview.html" %}
+
+  <section class="sec-2">
+    <form class="add-form" action="" method="POST">
+      {{ form.hidden_tag() }} {% from "includes/_formhelpers.html" import
+      render_field %}
+      <section class="input-con-2">
+        <div class="input-con">
+          {{render_field( form.spanwijdte, class_='plane-input')}}
+          <label for="first-name" class="label-con">
+            <p class="input-text">Spanwijdte (standaard: 26.00)</p>
+          </label>
+        </div>
+
+        <div class="input-con">
+          {{render_field(form.lengte, class_='plane-input')}}
+          <label for="last-name" class="label-con">
+            <p class="input-text">Lengte (standaard: 31.68)</p>
+          </label>
+        </div>
+      </section>
+
+      <section class="input-con-2">
+        <div class="input-con">
+          {{render_field(form.hoogte, class_='plane-input')}}
+          <label for="first-name" class="label-con">
+            <p class="input-text">Hoogte (standaard: 9.86)</p>
+          </label>
+        </div>
+
+        <div class="input-con">
+          {{render_field(form.gewicht, class_='plane-input')}}
+          <label for="last-name" class="label-con">
+            <p class="input-text">Gewicht (standaard: 36.500)</p>
+          </label>
+        </div>
+      </section>
+
+      <section class="input-con-2">
+        <div class="input-con">
+          {{render_field( form.snelheid, class_='plane-input')}}
+          <label for="first-name" class="label-con">
+            <p class="input-text">Snelheid (standaard: 850)</p>
+          </label>
+        </div>
+
+        <div class="input-con">
+          {{render_field( form.bereik, class_='plane-input')}}
+          <label for="last-name" class="label-con">
+            <p class="input-text">Bereik (standaard: 3300)</p>
+          </label>
+        </div>
+      </section>
+
+      <section class="input-con-2">
+        <div class="input-con">
+          {{render_field( form.aantal, class_='plane-input')}}
+          <label for="first-name" class="label-con">
+            <p class="input-text">Aantal (standaard: 88)</p>
+          </label>
+        </div>
+
+        <div class="input-con">
+          {{render_field( form.locatie, class_='plane-input')}}
+          <label for="last-name" class="label-con">
+            <p class="input-text">Locatie</p>
+          </label>
+        </div>
+      </section>
+      <div class="btns-con add-btn">
+        <button class="btn" type="submit">
+          <span class="btn-text">Toevoegen</span>
+          <span class="btn-after"></span>
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
+{% endblock %}

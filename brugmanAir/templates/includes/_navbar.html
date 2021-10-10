@@ -1,0 +1,97 @@
+<header class="header-con">
+  <div class="logo-con flex">
+    <a class="logo-name name-home flex" href="#">
+      BrugmanAir
+      <img
+        class="logo"
+        src="{{url_for('static', filename='./img/plane-icon.png')}}"
+        alt=""
+      />
+    </a>
+    <div class="menu-icon">
+      <span class="material-icons-outlined menu"> menu </span>
+      <span class="material-icons-outlined arrow"> arrow_back </span>
+    </div>
+  </div>
+
+  <ul class="top-nav flex cen-hor">
+    <li class="profile">
+      <a class="flex user-profile" href="javascript:void(0)">
+        <div class="profile-img">
+          <span>{{session["fname"]}}{{session["lname"]}}</span>
+        </div>
+        <p>{{session["name"]}}</p>
+        <span class="material-icons"> expand_more </span>
+      </a>
+
+      <!--? profile settings -->
+      <div class="profile-settings">
+        <ul class="settings-links flex">
+          <li>
+            <a class="flex" href="{{url_for('logout')}}">
+              <span class="material-icons-outlined link-icon pro-icon">
+                logout
+              </span>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</header>
+<!-- ? side nav -->
+<nav class="side-nav">
+  <p class="lins-title">General</p>
+  <ul class="ul-links">
+    <li class="links">
+      <a
+        class="side-link"
+        href="{{url_for('dashboard')}}"
+        data-link="dashboard"
+      >
+        <span class="material-icons-outlined link-icon"> home </span>
+        <span class="link-text"> Dashboard </span>
+      </a>
+    </li>
+
+    <li class="links">
+      <a
+        class="side-link"
+        href="{{url_for('new_flight')}}"
+        data-link="new-flight"
+      >
+        <span class="material-icons-outlined link-icon"> flight_takeoff </span>
+        <span class="link-text"> Nieuwe Vlucht </span>
+      </a>
+    </li>
+
+    <li class="links">
+      <a class="side-link" href="{{url_for('new_des')}}" data-link="new-des">
+        <span class="material-icons-outlined link-icon"> place </span>
+        <span class="link-text"> Nieuwe bestemming </span>
+      </a>
+    </li>
+    <li class="links">
+      <a
+        class="side-link"
+        href="{{url_for('new_crew')}}"
+        data-link="new-mwerker"
+      >
+        <span class="material-icons-outlined link-icon"> person_add </span>
+        <span class="link-text"> Nieuwe Medewerker</span>
+      </a>
+    </li>
+    <li class="links">
+      <a
+        class="side-link"
+        href="{{url_for('new_plane')}}"
+        data-link="new-plane"
+      >
+        <span class="material-icons-outlined link-icon"> flight </span>
+        <span class="link-text"> Nieuw Vliegtuig</span>
+      </a>
+    </li>
+  </ul>
+  <p class="terms">&copy; 2021 BrugmanAir</p>
+</nav>

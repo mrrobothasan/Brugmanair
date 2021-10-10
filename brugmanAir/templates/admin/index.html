@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='./styles/style10.css')}}"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{url_for('static', filename='./img/airplane-round.png')}}"
+      type="image/x-icon"
+    />
+    <script
+      async
+      src="{{url_for('static', filename='./js/plane.js')}}"
+    ></script>
+    <title>BrugmanAir</title>
+  </head>
+  <body class="plane-body">
+    <section class="plane-sec">
+      <div class="clouds">
+        <img
+          src="{{url_for('static', filename='./img/cloud1.png')}}"
+          style="--i: 1"
+          alt=""
+        />
+        <img
+          src="{{url_for('static', filename='./img/cloud1.png')}}"
+          style="--i: 2"
+          alt=""
+        />
+        <img
+          src="{{url_for('static', filename='./img/cloud1.png')}}"
+          style="--i: 3"
+          alt=""
+        />
+      </div>
+      <div class="clouds clouds2">
+        <img
+          src="{{url_for('static', filename='./img/cloud1.png')}}"
+          style="--i: 1"
+          alt=""
+        />
+        <img
+          src="{{url_for('static', filename='./img/cloud1.png')}}"
+          style="--i: 2"
+          alt=""
+        />
+        <img
+          src="{{url_for('static', filename='./img/cloud1.png')}}"
+          style="--i: 3"
+          alt=""
+        />
+      </div>
+      <div class="runway"></div>
+      <img
+        class="plane-img"
+        src="{{url_for('static', filename='./img/plane.png')}}"
+        alt=""
+      />
+    </section>
+    <a class="logo-name plane-to-admin" href="{{url_for('login')}}"
+      >BrugmanAir
+      <img
+        class="logo logo-plane"
+        src="{{url_for('static', filename='./img/plane-icon.png')}}"
+        alt=""
+      />
+    </a>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="{{url_for('static', filename='./img/airplane-round.png')}}"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/style10.css')}}"
+    />
+    <script async src="{{url_for('static', filename='js/login.js')}}"></script>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    {% include "includes/_logo.html" %} {% include "includes/_messages.html" %}
+    {% block content %} {% endblock %}
+  </body>
+  <script>
+    const alertMsg = document.querySelector(".alert");
+
+    setTimeout((e) => {
+      if (alertMsg) {
+        alertMsg.style.display = "none";
+      }
+    }, 3000);
+  </script>
+</html>

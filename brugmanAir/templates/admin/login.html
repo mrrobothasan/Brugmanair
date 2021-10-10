@@ -1,0 +1,35 @@
+{% extends "layout/login_layout.html" %} {% block content %}
+
+<main class="container login-signup">
+  <form action="" class="form-container" method="POST">
+    <h1 class="register-text">Login</h1>
+
+    <!-- ? username  -->
+    <div class="input-con">
+      <input type="text" name="email" autocomplete="off" required />
+      <label for="email" class="label-con">
+        <p class="input-text">E-mailadres</p>
+      </label>
+    </div>
+
+    <!-- ? passowrd -->
+    <div class="input-con">
+      <input type="password" name="passowrd" autocomplete="off" required />
+      <label for="passowrd" class="label-con">
+        <p class="input-text">Wachtwoord</p>
+      </label>
+      <span class="material-icons-outlined eye-icon con-pass-eye">
+        visibility_off
+      </span>
+    </div>
+
+    <div class="btns-con">
+      <button class="btn" type="submit">
+        <span class="btn-text">Inloggen</span>
+        <span class="btn-after"></span>
+      </button>
+      <a class="sign-in-text" href="{{url_for('register')}}"> Registreer nu</a>
+    </div>
+  </form>
+</main>
+{% endblock %}

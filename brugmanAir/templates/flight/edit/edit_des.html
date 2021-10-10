@@ -1,0 +1,43 @@
+{% extends "layout/layout.html" %} {% block content %}
+<main class="main-con flex">
+  {% include "includes/_overview.html" %}
+
+  <section class="sec-2">
+    <form class="add-form" action="" method="POST">
+      {{ form.hidden_tag() }} {% from "includes/_formhelpers.html" import
+      render_field %}
+
+      <!-- ? land -->
+      <div class="input-con">
+        {{render_field(form.land)}}
+        <label for="land" class="label-con">
+          <p class="input-text">Land</p>
+        </label>
+      </div>
+
+      <!-- ? plaats -->
+      <div class="input-con">
+        {{render_field(form.stad)}}
+        <label for="stad" class="label-con">
+          <p class="input-text">Stad</p>
+        </label>
+      </div>
+
+      <!-- ? luchthaven -->
+      <div class="input-con">
+        {{render_field(form.luchthaven)}}
+        <label for="luchthaven" class="label-con">
+          <p class="input-text">Luchthaven</p>
+        </label>
+      </div>
+
+      <div class="btns-con add-btn">
+        <button class="btn" type="submit">
+          <span class="btn-text">Wijzigen</span>
+          <span class="btn-after"></span>
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
+{% endblock %}

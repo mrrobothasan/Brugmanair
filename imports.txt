@@ -1,0 +1,12 @@
+myEnv\Scripts\activate
+
+pip install flask
+pip install -U Flask-SQLAlchemy
+pip install Flask-MySQLdb
+pip install WTForms
+pip install flask_wtf
+pip install passlib
+pip install email_validator
+pip install flask_socketio
+
+{{ form.hidden_tag() }}

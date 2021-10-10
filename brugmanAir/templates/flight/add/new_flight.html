@@ -1,0 +1,190 @@
+{% extends "layout/layout.html" %} {% block content %}
+<main class="main-con flex">
+  {% include "includes/_overview.html" %}
+  <div class="flight-alert alert">
+    <span class="material-icons-outlined danger-icon">new_releases</span>
+    <span class="err-text">error</span>
+  </div>
+  <form class="sec-2" method="POST">
+    <div class="add-form">
+      <!-- ? datum -->
+      <div class="input-con">
+        <input id="datum" type="date" />
+        <label for="datum" class="label-con">
+          <p class="input-text" id="datum-label">Datum</p>
+        </label>
+      </div>
+      <!-- ? Vliegtuig -->
+      <div class="select-box">
+        <p class="select-title">Vliegtuig</p>
+
+        <div class="options-con">
+          {% for vliegtuig in vliegtuigen %}
+          <div class="option">
+            <input
+              type="radio"
+              class="radio"
+              value="{{vliegtuig.id}}"
+              id="{{vliegtuig.id}}"
+            />
+            <label for="{{vliegtuig.id}}">{{vliegtuig.id}}</label>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="selected vli-selected">Selecteer een Vliegtuig</div>
+      </div>
+
+      <section class="input-con-2 vlucht-tijd-con">
+        <!-- ? vertrektijd -->
+        <div class="input-con">
+          <input class="tijd" id="vertrektijd" type="time" />
+          <label for="vertrektijd" class="label-con">
+            <p class="input-text">vertrektijd</p>
+          </label>
+        </div>
+
+        <!-- ? aankomsttijd -->
+        <div class="input-con">
+          <input class="tijd" id="aankomsttijd" type="time" />
+          <label for="aankomsttijd" class="label-con">
+            <p class="input-text">aankomsttijd</p>
+          </label>
+        </div>
+      </section>
+
+      <section class="input-con-2 vlucht-tijd-con">
+        <!-- ? vertrek -->
+        <div class="select-box">
+          <p class="select-title">Vertrek locatie</p>
+          <div class="options-con">
+            {% for bestemming in bestemmingen %}
+            <div class="option vertrek-option">
+              <input type="radio" class="radio" id="{{bestemming.id}}" />
+              <label for="{{bestemming.id}}">{{bestemming.stad}}</label>
+            </div>
+            {% endfor %}
+          </div>
+          <div id="vertrek-selected" class="selected vertrek-selected">
+            Selecteer een vertrek locatie
+          </div>
+        </div>
+
+        <!-- ? bestemming -->
+        <div class="select-box">
+          <p class="select-title">Bestemming</p>
+          <div class="options-con">
+            {% for bestemming in bestemmingen %}
+            <div class="option best-option">
+              <input type="radio" class="radio" id="{{bestemming.id}}" />
+              <label for="{{bestemming.id}}">{{bestemming.stad}}</label>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="selected best-selected">Selecteer een bestemming</div>
+        </div>
+      </section>
+
+      <section class="input-con-2 vlucht-tijd-con">
+        <!-- ? piloot -->
+        <div class="select-box">
+          <p class="select-title">Piloot</p>
+          <div class="options-con">
+            {% for piloot in piloten %}
+            <div class="option">
+              <input type="radio" class="radio" id="{{piloot.id}}" />
+              <label for="{{piloot.id}}">{{piloot.voornaam}}</label>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="selected pil1-selected">Selecteer een piloot</div>
+        </div>
+
+        <!-- ? co-piloot -->
+        <div class="select-box">
+          <p class="select-title">Co-Piloot</p>
+          <div class="options-con">
+            {% for co_piloot in co_piloten %}
+            <div class="option">
+              <input type="radio" class="radio" id="{{co_piloot.id}}" />
+              <label for="{{co_piloot.id}}">{{co_piloot.voornaam}}</label>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="selected co-pil-selected">Selecteer een Co-piloot</div>
+        </div>
+      </section>
+
+      <section class="input-con-2 vlucht-tijd-con">
+        <!-- ? Steward 1 -->
+        <div class="select-box">
+          <p class="select-title">Steward 1</p>
+          <div class="options-con">
+            {% for steward in stewards %}
+            <div class="option">
+              <input type="radio" class="radio" id="{{steward.id}}" />
+              <label for="{{steward.id}}">{{steward.voornaam}}</label>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="selected ste1-selected">Selecteer een steward</div>
+        </div>
+
+        <!-- ? Steward 2 -->
+        <div class="select-box">
+          <p class="select-title">Steward 2</p>
+          <div class="options-con">
+            {% for steward in stewards %}
+            <div class="option">
+              <input type="radio" class="radio" id="{{steward.id}}" />
+              <label for="{{steward.id}}">{{steward.voornaam}}</label>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="selected ste2-selected">Selecteer een steward</div>
+        </div>
+      </section>
+
+      <!-- ? prijs -->
+      <div class="input-con">
+        <input type="text" id="prijs" required />
+        <label for="prijs" class="label-con">
+          <p class="input-text">Prijs</p>
+        </label>
+      </div>
+
+      <div class="btns-con add-btn">
+        <button id="submit-btn-new-flight" class="btn" type="submit">
+          <span class="btn-text">Toevoegen</span>
+          <span class="btn-after"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  const tijdInputs = document.querySelectorAll(".tijd");
+
+  flatpickr("#datum", {
+    altInput: true,
+    altFormat: " j F  Y",
+    dateFormat: "Y-m-d",
+    minDate: new Date().fp_incr(1),
+  });
+
+  tijdInputs.forEach((e) => {
+    flatpickr(e, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+    });
+
+    e.addEventListener("click", (el) => {
+      const inputTarget = el.target;
+      const inputLabel = inputTarget.nextElementSibling.firstElementChild;
+      inputLabel.classList.add("active-datum-label");
+    });
+  });
+</script>
+{% endblock %}

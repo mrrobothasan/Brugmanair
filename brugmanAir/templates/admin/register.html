@@ -1,0 +1,108 @@
+{% extends "layout/login_layout.html" %} {% block content %}
+<main class="container login-signup">
+  <form class="form-container" method="POST">
+    <h1 class="register-text">Register</h1>
+    {{ form.hidden_tag() }} {% from "includes/_formhelpers.html" import
+    render_field %}
+    <!-- ? fname -->
+    <section class="input-con-2">
+      <div class="input-con">
+        {{render_field(form.fname)}}
+        <label for="first-name" class="label-con">
+          <p class="input-text">Voornaam</p>
+        </label>
+      </div>
+
+      <div class="input-con">
+        {{render_field(form.lname)}}
+        <label for="last-name" class="label-con">
+          <p class="input-text">Achternaam</p>
+        </label>
+      </div>
+    </section>
+
+    <!-- ? gender -->
+    <div class="gender-con">
+      <input type="radio" name="gender" value="Man" id="man" checked />
+      <label for="man">Man</label>
+
+      <input type="radio" name="gender" value="Vrouw" id="vrouw" />
+      <label for="vrouw">vrouw</label>
+
+      <input type="radio" name="gender" value="Anders" id="anders" />
+      <label for="anders">Anders</label>
+    </div>
+
+    <!-- ? straatnaam + huisnummer -->
+    <section class="input-con-2">
+      <div class="input-con">
+        {{render_field(form.straatnaam)}}
+        <label for="Straatnaam" class="label-con">
+          <p class="input-text">Straatnaam</p>
+        </label>
+      </div>
+
+      <div class="input-con">
+        {{render_field(form.huisnr)}}
+        <label for="huisnr" class="label-con">
+          <p class="input-text">Huisnummer</p>
+        </label>
+      </div>
+    </section>
+
+    <!-- ? postcode + plaats -->
+    <section class="input-con-2">
+      <div class="input-con">
+        {{render_field(form.postcode)}}
+        <label for="postcode" class="label-con">
+          <p class="input-text">Postcode</p>
+        </label>
+      </div>
+
+      <div class="input-con">
+        {{render_field(form.plaats)}}
+        <label for="plaats" class="label-con">
+          <p class="input-text">Plaats</p>
+        </label>
+      </div>
+    </section>
+
+    <!-- ? email -->
+    <div class="input-con">
+      {{render_field(form.email)}}
+      <label for="email" class="label-con">
+        <p class="input-text">E-mailadres</p>
+      </label>
+    </div>
+
+    <!-- ? passowrd -->
+    <div class="input-con">
+      {{render_field(form.password)}}
+      <label for="pass" class="label-con">
+        <p class="input-text">Wachtwoord</p>
+      </label>
+      <span class="material-icons-outlined eye-icon pass-eye">
+        visibility_off
+      </span>
+    </div>
+
+    <div class="input-con">
+      {{render_field(form.confirm)}}
+      <label for="pass" class="label-con">
+        <p class="input-text">Bevestig wachtwoord</p>
+      </label>
+      <span class="material-icons-outlined eye-icon con-pass-eye">
+        visibility_off
+      </span>
+    </div>
+
+    <div class="btns-con">
+      <button class="btn" type="submit">
+        <span class="btn-text">Aanmelden</span>
+        <span class="btn-after"></span>
+      </button>
+      <a class="sign-in-text" href="{{url_for('login')}}">Log nu in</a>
+    </div>
+  </form>
+</main>
+{% endblock %}

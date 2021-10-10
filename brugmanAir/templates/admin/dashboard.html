@@ -1,0 +1,400 @@
+{% extends "layout/layout.html" %} {% block content %}
+
+<style>
+  .table-icons {
+    border: 1px solid #a7b8c9;
+    border-radius: 5px;
+    padding: 3px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .tables-sec {
+    gap: 20px;
+  }
+
+  .icon-td {
+    padding: 0;
+  }
+</style>
+<main class="main-con flex">
+  <section class="sec-1 flex">
+    <span class="material-icons-outlined home-icon"> home </span>
+    <article>
+      <h2>Dashboard</h2>
+    </article>
+  </section>
+
+  <section class="sec-2">
+    <h3>Overview</h3>
+    <ul class="overview">
+      <li>
+        <div class="overview-content content-1">
+          <h3>Crew</h3>
+          <span>{{piloten_len}}</span>
+        </div>
+        <span class="material-icons-outlined user-icon icon-1">
+          people_alt
+        </span>
+      </li>
+      <li>
+        <div class="overview-content content-2">
+          <h3>Vliegtuigen</h3>
+          <span>{{vliegtuigen_len}}</span>
+        </div>
+        <span class="material-icons-outlined user-icon icon-2"> flight </span>
+      </li>
+
+      <li>
+        <div class="overview-content content-3">
+          <h3>Vluchten</h3>
+          <span>{{vluchten_len}}</span>
+        </div>
+        <span class="material-icons-outlined user-icon icon-3">
+          flight_takeoff
+        </span>
+      </li>
+
+      <li>
+        <div class="overview-content content-4">
+          <h3>Bestemmingen</h3>
+          <span>{{bestemmingen_len}}</span>
+        </div>
+        <span class="material-icons-outlined user-icon icon-4"> place </span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="tables-sec flex">
+    <section class="table-con">
+      <div class="table-title flex">
+        <h3>Crew</h3>
+        <div class="table-icons">
+          <span class="material-icons-outlined full-icon"> fullscreen </span>
+          <span class="material-icons delete-crew"> delete_outline </span>
+          <span class="material-icons-outlined refresh-icon"> refresh </span>
+          <span class="material-icons-outlined expand-icon"> expand_less </span>
+        </div>
+      </div>
+      <div class="table-div">
+        <table class="table" aria-describedby="Crew">
+          <thead>
+            <tr>
+              <th scope="col">
+                <input
+                  class="checkbox check-all"
+                  type="checkbox"
+                  name=""
+                  id="1000"
+                />
+                <label for="1000"></label>
+              </th>
+              <th scope="col">Voornaam</th>
+              <th scope="col">Achternaam</th>
+              <th scope="col">Positie</th>
+              <th scope="col">E-mailadres</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% if data %} {% for medewerker in data %}
+            <tr>
+              <td class="checkbox-con">
+                <input
+                  class="checkbox ckeck crew-check"
+                  type="checkbox"
+                  name=""
+                  id="{{medewerker.id}}"
+                />
+                <label for="{{medewerker.id}}"></label>
+              </td>
+
+              <td>{{medewerker.voornaam}}</td>
+              <td>{{medewerker.achternaam}}</td>
+              <td>{{medewerker.positie}}</td>
+              <td>{{medewerker.email}}</td>
+              <td class="icon-td">
+                <a href="/edit-crew/{{medewerker.id}}">
+                  <span class="material-icons-outlined edit-icon edit-crew">
+                    edit
+                  </span>
+                </a>
+              </td>
+            </tr>
+            {% endfor %} {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="table-con">
+      <div class="table-title flex">
+        <h3>Bestemmingen</h3>
+        <div class="table-icons">
+          <span class="material-icons-outlined full-icon"> fullscreen </span>
+          <span class="material-icons delete-dest"> delete_outline </span>
+          <span class="material-icons-outlined refresh-icon"> refresh </span>
+          <span class="material-icons-outlined expand-icon"> expand_less </span>
+        </div>
+      </div>
+      <div class="table-div">
+        <table class="table" aria-describedby="Bestemming">
+          <thead>
+            <tr>
+              <th scope="col">
+                <input
+                  class="checkbox check-all"
+                  type="checkbox"
+                  name=""
+                  id="2000"
+                />
+                <label for="2000"></label>
+              </th>
+              <th scope="col">Land</th>
+              <th scope="col">Stad</th>
+              <th scope="col">Luchthaven</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for bestemming in bestemmingen_data %}
+            <tr>
+              <td>
+                <input
+                  class="checkbox ckeck dest-check"
+                  type="checkbox"
+                  name=""
+                  id="{{bestemming.id}}"
+                />
+                <label for="{{bestemming.id}}"></label>
+              </td>
+              <td>{{bestemming.land}}</td>
+              <td>{{bestemming.stad}}</td>
+              <td>{{bestemming.luchthaven}}</td>
+              <td class="icon-td">
+                <a href="/edit-dest/{{bestemming.id}}">
+                  <span class="material-icons-outlined edit-icon edit-dest">
+                    edit
+                  </span>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+  <section class="table-con">
+    <div class="table-title flex">
+      <h3>Vluchten</h3>
+      <div class="table-icons">
+        <span class="material-icons-outlined full-icon"> fullscreen </span>
+        <span class="material-icons delete-vlucht"> delete_outline </span>
+        <span class="material-icons-outlined refresh-icon"> refresh </span>
+        <span class="material-icons-outlined expand-icon"> expand_less </span>
+      </div>
+    </div>
+    <div class="table-div">
+      <table class="table" aria-describedby="Vlucht">
+        <thead>
+          <tr>
+            <th scope="col">
+              <input
+                class="checkbox check-all"
+                type="checkbox"
+                name=""
+                id="3000"
+              />
+              <label for="3000"></label>
+            </th>
+            <th scope="col">Vertrek Locatie</th>
+            <th scope="col">Bestemming</th>
+            <th scope="col">Vertrek Datum</th>
+            <th scope="col">Vertrektijd</th>
+            <th scope="col">Aankomsttijd</th>
+            <th scope="col">Vliegtuig</th>
+            <th scope="col">Piloot</th>
+            <th scope="col">Co-Piloot</th>
+            <th scope="col">Prijs (&euro;)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for vlucht in vluchten_data %}
+          <tr>
+            <td>
+              <input
+                class="checkbox ckeck vlucht-check"
+                type="checkbox"
+                name=""
+                id="{{vlucht.id}}"
+              />
+              <label for="{{vlucht.id}}"></label>
+            </td>
+            <td>{{vlucht.vertrek_locatie}}</td>
+            <td>{{vlucht.Bestemming_id}}</td>
+            <td>{{vlucht.vertrekdatum.strftime('%d %b %Y')}}</td>
+            <td class="time">{{vlucht.vertrektijd}}</td>
+            <td class="time">{{vlucht.aankomsttijd}}</td>
+            <td>{{vlucht.Vliegtuig_id}}</td>
+            <td>{{vlucht.piloot}}</td>
+            <td>{{vlucht.co_piloot}}</td>
+            <td>{{vlucht.prijs}}</td>
+            <td class="icon-td">
+              <a href="/edit-flight/{{vlucht.id}}">
+                <span class="material-icons-outlined edit-icon edit-vlucht">
+                  edit
+                </span>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="table-con">
+    <div class="table-title flex">
+      <h3>Vliegtuigen</h3>
+      <div class="table-icons">
+        <span class="material-icons-outlined full-icon"> fullscreen </span>
+        <span class="material-icons delete-plane"> delete_outline </span>
+        <span class="material-icons-outlined refresh-icon"> refresh </span>
+        <span class="material-icons-outlined expand-icon"> expand_less </span>
+      </div>
+    </div>
+    <div class="table-div">
+      <table class="table" aria-describedby="Vliegtuig">
+        <thead>
+          <tr>
+            <th scope="col">
+              <input
+                class="checkbox check-all"
+                type="checkbox"
+                name=""
+                id="4000"
+              />
+              <label for="4000"></label>
+            </th>
+            <th scope="col">ID</th>
+            <th scope="col">spanWijdte</th>
+            <th scope="col">Lengte</th>
+            <th scope="col">Hoogte</th>
+            <th scope="col">Kruissnelheid</th>
+            <th scope="col">Bereik</th>
+            <th scope="col">Aantal passagiers</th>
+            <th scope="col">Locatie</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for vliegtuig in vliegtuigen_data %}
+          <tr>
+            <td>
+              <input
+                class="checkbox ckeck plane-check"
+                type="checkbox"
+                name=""
+                id="{{vliegtuig.id}}"
+              />
+              <label for="{{vliegtuig.id}}"></label>
+            </td>
+            <td>{{vliegtuig.id}}</td>
+            <td>{{vliegtuig.spanwijdte}}</td>
+            <td>{{vliegtuig.lengte}}</td>
+            <td>{{vliegtuig.hoogte}}</td>
+            <td>{{vliegtuig.kruissnelheid}}</td>
+            <td>{{vliegtuig.bereik}}</td>
+            <td>{{vliegtuig.aantal_passagiers}}</td>
+            <td>{{vliegtuig.locatie}}</td>
+            <td class="icon-td">
+              <a href="/edit-plane/{{vliegtuig.id}}">
+                <span class="material-icons-outlined edit-icon edit-plane">
+                  edit
+                </span>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+  const deleteCrew = document.querySelector(".delete-crew");
+  const deleteDest = document.querySelector(".delete-dest");
+  const deleteAdminVlucht = document.querySelector(".delete-vlucht");
+  const deletePlane = document.querySelector(".delete-plane");
+
+  const xml = new XMLHttpRequest();
+  const ids = [];
+  const delRow = (delIcon, url, check) => {
+    delIcon.addEventListener("click", (e) => {
+      const inputs =
+        delIcon.parentElement.parentElement.nextElementSibling.querySelectorAll(
+          check
+        );
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].checked) {
+          let chechparent = inputs[i].parentElement.parentElement;
+          chechparent.style.display = "none";
+          ids[i] = inputs[i].id;
+        }
+      }
+
+      xml.open("POST", url, true);
+      xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+      xml.send(JSON.stringify(ids));
+    });
+  };
+
+  delRow(deleteCrew, "/delete-crew", ".crew-check");
+  delRow(deleteDest, "/delete-dest", ".dest-check");
+  delRow(deleteAdminVlucht, "/delete-vlucht", ".vlucht-check");
+  delRow(deletePlane, "/delete-plane", ".plane-check");
+
+  $(".expand-icon").each((index, e) => {
+    $(e).click((el) => {
+      const iconVal = el.target;
+      const table = iconVal.parentElement.parentElement.nextElementSibling;
+
+      if (iconVal.innerText == "expand_less") {
+        el.target.innerText = "expand_more";
+      } else {
+        el.target.innerText = "expand_less";
+      }
+
+      $(table).slideToggle();
+    });
+  });
+
+  const editRow = (checks) => {
+    $(checks).each((index, e) => {
+      $(e).click((el) => {
+        const checkTarget = el.target;
+        const editIcon =
+          checkTarget.parentElement.parentElement.lastElementChild;
+        $(editIcon).fadeToggle();
+      });
+    });
+  };
+
+  editRow(".crew-check");
+  editRow(".dest-check");
+  editRow(".vlucht-check");
+  editRow(".plane-check");
+
+  $(".time").each((index, el) => {
+    const newText = $(el).text();
+    const subText = newText.substring(0, newText.length - 3);
+    $(el).text(subText);
+  });
+
+  $(".refresh-icon").each((index, e) => {
+    $(e).click(() => {
+      window.location.reload(true);
+    });
+  });
+</script>
+{% endblock content %}

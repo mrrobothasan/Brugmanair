@@ -1,0 +1,13 @@
+{% extends "layout/login_layout.html" %} {% block content %}
+<main class="err-page flex">
+  <div class="not-found flex">
+    <img src="{{url_for('static', filename='img/not-found.svg')}}" alt="" />
+    <h1 class="oeps">Oeps!</h1>
+    <h4 class="err-msg">Sorry, we kunnen deze pagina niet meer vinden</h4>
+    <a class="btn" href="/dashboard">
+      <span class="btn-text">Homepage</span>
+      <span class="btn-after"></span>
+    </a>
+  </div>
+</main>
+{% endblock %}
