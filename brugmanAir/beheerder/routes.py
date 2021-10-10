@@ -29,6 +29,71 @@ def is_admin(f):
             return redirect(url_for("login"))
     return wrap
 
+def rows_num(table_name):
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM {table_name}")
+    result_len = len(cur.fetchall())
+
+    cur.close()
+    return result_len
+
+
+def get_data(table_name):
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM {table_name}")
+    result_data = cur.fetchall()
+
+    return result_data
+
+
+def get_data_con(table_name, where, row):
+    cur = mysql.connection.cursor()
+    cur.execute(
+        f"SELECT * FROM {table_name} WHERE {row} = %s", [where])
+    result_data = cur.fetchall()
+
+    return result_data
+
+
+def get_one(table_name, where, row):
+    cur = mysql.connection.cursor()
+    cur.execute(
+        f"SELECT * FROM {table_name} WHERE {row} = %s", [where])
+    result_data = cur.fetchone()
+
+    return result_data
+
+
+def get_one_cell(table_name, where, row, cell):
+    cur = mysql.connection.cursor()
+    cur.execute(
+        f"SELECT {cell} FROM {table_name} WHERE {row} = %s", [where])
+    result_data = cur.fetchone()
+
+    return result_data
+
+
+def get_all_cell(table_name, cell):
+    cur = mysql.connection.cursor()
+    cur.execute(
+        f"SELECT {cell} FROM {table_name}")
+    result_data = cur.fetchall()
+
+    return result_data
+
+
+def get_piloot_co(positie, id):
+    cur = mysql.connection.cursor()
+    cur.execute(
+        f"""SELECT medewerker.voornaam 
+                FROM medewerker 
+                INNER JOIN vlucht_medewerker 
+                WHERE medewerker.id = vlucht_medewerker.medewerker_id 
+                AND medewerker.positie = '{positie}'
+                AND vlucht_medewerker.vlucht_id =%s""", [id])
+    data = cur.fetchone()
+    return data
+
 
 @app.route("/")
 @app.route("/home")
@@ -110,73 +175,6 @@ def login():
 
     return render_template("admin/login.html", title="login")
 
-
-def rows_num(table_name):
-    cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * FROM {table_name}")
-    result_len = len(cur.fetchall())
-
-    cur.close()
-    return result_len
-
-
-def get_data(table_name):
-    cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * FROM {table_name}")
-    result_data = cur.fetchall()
-
-    return result_data
-
-
-def get_data_con(table_name, where, row):
-    cur = mysql.connection.cursor()
-    cur.execute(
-        f"SELECT * FROM {table_name} WHERE {row} = %s", [where])
-    result_data = cur.fetchall()
-
-    return result_data
-
-
-def get_one(table_name, where, row):
-    cur = mysql.connection.cursor()
-    cur.execute(
-        f"SELECT * FROM {table_name} WHERE {row} = %s", [where])
-    result_data = cur.fetchone()
-
-    return result_data
-
-
-def get_one_cell(table_name, where, row, cell):
-    cur = mysql.connection.cursor()
-    cur.execute(
-        f"SELECT {cell} FROM {table_name} WHERE {row} = %s", [where])
-    result_data = cur.fetchone()
-
-    return result_data
-
-
-def get_all_cell(table_name, cell):
-    cur = mysql.connection.cursor()
-    cur.execute(
-        f"SELECT {cell} FROM {table_name}")
-    result_data = cur.fetchall()
-
-    return result_data
-
-
-def get_piloot_co(positie, id):
-    cur = mysql.connection.cursor()
-    cur.execute(
-        f"""SELECT medewerker.voornaam 
-                FROM medewerker 
-                INNER JOIN vlucht_medewerker 
-                WHERE medewerker.id = vlucht_medewerker.medewerker_id 
-                AND medewerker.positie = '{positie}'
-                AND vlucht_medewerker.vlucht_id =%s""", [id])
-    data = cur.fetchone()
-    return data
-
-
 @app.route("/dashboard")
 @is_logged_in
 def dashboard():
@@ -223,3 +221,4 @@ def logout():
 @app.errorhandler(404)
 def not_found(e):
     return render_template("not_found.html")
+
