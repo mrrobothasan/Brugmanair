@@ -1,9 +1,9 @@
 const profileBtn = document.querySelector(".user-profile");
 const profileSettings = document.querySelector(".profile-settings");
-const body = document.querySelector(".home");
 
 const sideNavBtn = document.querySelector(".menu-icon");
 const sideNav = document.querySelector(".side-nav");
+const body = document.querySelector("body");
 const main = document.querySelector("main");
 
 const fullIcon = document.querySelectorAll(".full-icon");
@@ -28,15 +28,13 @@ profileBtn.addEventListener("click", (e) => {
   profileSettings.classList.toggle("show-profile");
 });
 
-if (body) {
-  body.addEventListener("click", (e) => {
-    if (e.target != profileBtn) {
-      if (profileSettings.classList.contains("show-profile")) {
-        profileSettings.classList.remove("show-profile");
-      }
+body.addEventListener("click", (e) => {
+  if (e.target != profileBtn) {
+    if (profileSettings.classList.contains("show-profile")) {
+      profileSettings.classList.remove("show-profile");
     }
-  });
-}
+  }
+});
 
 sideNavBtn.addEventListener("click", (e) => {
   sideNav.classList.toggle("hide");
@@ -184,6 +182,7 @@ const showError = (err, msg) => {
     $(".alert").css("display", "none");
   }, 3000);
 };
+
 const submit = (url, event) => {
   const datum = checkTextInput("#datum", "");
   const vertrektijd = checkTextInput("#vertrektijd", "", "normal");

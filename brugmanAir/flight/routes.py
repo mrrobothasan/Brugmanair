@@ -276,7 +276,6 @@ def edit_flight(flight_id):
     flight = request.get_json()
 
     if request.method == "POST" and flight != None:
-        print(flight)
         medewerkers = []
         medewerkers.append(get_one_cell(
             "medewerker", flight["pilo1"], "voornaam", "id")["id"])
