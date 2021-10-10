@@ -1014,6 +1014,9 @@ ul {
 }
 .alert.flight-alert {
   opacity: 0;
+  position: fixed;
+  top: 10%;
+  z-index: 10;
 }
 @keyframes animateClouds {
   0% {
