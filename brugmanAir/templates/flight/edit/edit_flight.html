@@ -197,5 +197,10 @@
       inputEditLabel.classList.add("active-datum-label");
     }
   });
+
+  const datumLabelEdit = document.getElementById("datum").nextElementSibling.nextElementSibling.firstElementChild;
+  if($("#datum") != ""){
+    datumLabelEdit.classList.add("active-datum-label");
+  }
 </script>
 {% endblock %}
