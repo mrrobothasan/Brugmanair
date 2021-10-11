@@ -1,5 +1,4 @@
 from flask import Flask
-from itertools import zip_longest
 from flask_mysqldb import MySQL
 
 
